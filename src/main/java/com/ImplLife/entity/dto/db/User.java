@@ -1,37 +1,54 @@
 package com.ImplLife.entity.dto.db;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
+import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+@Builder(toBuilder = true)
+public class User implements UserDetails, OidcUser {
     //region Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String googleId;
     private String username;
     private String password;
     @Transient
     private String passwordConfirm;
-    private String googleId;
+    @Singular
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
-
     //endregion
 
-    //region Security
+    //region OAuth (@Transient)
+    @Transient
+    private Map<String, Object> attributes;
+    @Transient
+    private Map<String, Object> claims;
+    @Transient
+    private OidcUserInfo userInfo;
+    @Transient
+    private OidcIdToken idToken;
+    @Transient
+    private String name;
+    //endregion
+
+    //region Security Default
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -65,6 +82,35 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    //endregion
+
+    //region Security OAuth2
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    @Override
+    public Map<String, Object> getClaims() {
+        return claims;
+    }
+
+    @Override
+    public OidcUserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    @Override
+    public OidcIdToken getIdToken() {
+        return idToken;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
     //endregion
 }

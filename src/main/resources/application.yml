@@ -1,4 +1,10 @@
 spring:
+#  main:
+#    web-application-type: none
+  datasource:
+    url: jdbc:postgresql://localhost/ImplBankAssist
+    username: ImplBankAssist
+    password: 1234
   security:
     oauth2:
       client:
