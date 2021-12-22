@@ -28,32 +28,32 @@ public class HTTP extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests(a -> a
-                        .antMatchers("/root").hasRole("ROOT")
-                        .antMatchers("/user").hasRole("USER")
-                        .antMatchers("/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .exceptionHandling(e -> e
-                        .accessDeniedPage("/ad")
-                )
-                .csrf(AbstractHttpConfigurer::disable)
-                .logout(l -> l
-                        .logoutSuccessUrl("/login").permitAll()
-                )
-                .formLogin(fl -> fl
-                        .loginPage("/login")
-                        .loginProcessingUrl("/j_spring_security_check")
-                        .failureUrl("/login?error")
-                        .usernameParameter("j_username")
-                        .passwordParameter("j_password")
-                        .permitAll()
-                )
-                .oauth2Login(o -> o
-                        .loginPage("/login")
-                )
+    protected void configure(HttpSecurity https) throws Exception {
+        https
+            .authorizeRequests(a -> a
+                    .antMatchers("/root").hasRole("ROOT")
+                    .antMatchers("/user").hasRole("USER")
+                    .antMatchers("/**").permitAll()
+                    .anyRequest().authenticated()
+            )
+            .exceptionHandling(e -> e
+                    .accessDeniedPage("/ad")
+            )
+            .csrf(AbstractHttpConfigurer::disable)
+            .logout(l -> l
+                    .logoutSuccessUrl("/login").permitAll()
+            )
+            .formLogin(fl -> fl
+                    .loginPage("/login")
+                    .loginProcessingUrl("/j_spring_security_check")
+                    .failureUrl("/login?error")
+                    .usernameParameter("j_username")
+                    .passwordParameter("j_password")
+                    .permitAll()
+            )
+            .oauth2Login(o -> o
+                    .loginPage("/login")
+            )
         ;
     }
 
@@ -65,13 +65,12 @@ public class HTTP extends WebSecurityConfigurerAdapter {
     private OidcUserService oidcUserService;
 
     @Bean
-    public OidcUserService oidcUserService(@Autowired UserSecurity userService) {
+    public OidcUserService oidcUserService(@Autowired UserSecurity userSecurity) {
         if (oidcUserService == null) {
             oidcUserService = new OidcUserService() {
                 @Override
                 public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
-                    String sub = userRequest.getIdToken().getClaim("sub");
-                    return userService.findUserByGoogleId(sub);
+                    return userSecurity.load(userRequest);
                 }
             };
         }

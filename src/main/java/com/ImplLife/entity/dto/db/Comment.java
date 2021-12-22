@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,18 +11,14 @@ import java.util.List;
 @Getter
 
 @Entity
-@Table(name = "fa_transaction")
+@Table(name = "fa_comment")
 @Builder(toBuilder = true)
-public class Transaction {
+public class Comment {
     //region Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
-    private List<Comment> comments;
-    private Date date;
     private String value;
-    @OneToMany
-    private List<Category> categories;
+    private Date date;
     //endregion
 }

@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import java.util.Set;
 @Getter
 
 @Entity
-@Table(name = "users")
+@Table(name = "fa_user")
 @Builder(toBuilder = true)
 public class User implements UserDetails, OidcUser {
     //region Fields
@@ -30,9 +31,15 @@ public class User implements UserDetails, OidcUser {
     private String password;
     @Transient
     private String passwordConfirm;
+
     @Singular
-    @ManyToMany(fetch = FetchType.EAGER)
+    @Transient
     private Set<Role> roles;
+    private String idRoles;
+
+    @Singular
+    @OneToMany
+    private List<Transaction> transactions;
     //endregion
 
     //region OAuth (@Transient)

@@ -1,37 +1,29 @@
 package com.ImplLife.entity.dto.db;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
-import java.util.Set;
-
+@AllArgsConstructor
 @Getter
-@Setter
-@NoArgsConstructor
+public enum Role implements GrantedAuthority {
+    NONE('N', "ROLE_NONE"),
+    USER('U', "ROLE_USER"),
+    ADMIN('A', "ROLE_ADMIN")
+    ;
 
-@Entity
-@Table(name = "roles") // TODO: 17.12.2021 : Перобразовать в enum
-public class Role implements GrantedAuthority {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-
-    @Transient
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
-
-    /*===================================*/
-    public Role(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    private final char id;
+    private final String name;
 
     @Override
     public String getAuthority() {
         return name;
+    }
+
+    public static Role getById(char id) {
+        if (NONE.id == id) return NONE;
+        if (USER.id == id) return USER;
+        if (ADMIN.id == id) return ADMIN;
+        throw new IllegalArgumentException("Not exist role with id=" + id);
     }
 }
