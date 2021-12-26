@@ -31,8 +31,8 @@ public class HTTP extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity https) throws Exception {
         https
             .authorizeRequests(a -> a
-                    .antMatchers("/root").hasRole("ROOT")
-                    .antMatchers("/user").hasRole("USER")
+                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/", "/user/api/**").hasRole("USER")
                     .antMatchers("/**").permitAll()
                     .anyRequest().authenticated()
             )

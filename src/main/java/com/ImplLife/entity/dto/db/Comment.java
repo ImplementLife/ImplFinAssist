@@ -7,8 +7,7 @@ import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
+@Data
 
 @Entity
 @Table(name = "fa_comment")

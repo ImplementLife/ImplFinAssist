@@ -40,6 +40,12 @@ public class User implements UserDetails, OidcUser {
     @Singular
     @OneToMany
     private List<Transaction> transactions;
+
+    @Singular
+    @OneToMany
+    private List<Category> categories;
+    @Transient // TODO: 26.12.2021 issue with hibernate mapping...?...
+    private Category lastSelectedCategory;
     //endregion
 
     //region OAuth (@Transient)

@@ -8,8 +8,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
+@Data
 
 @Entity
 @Table(name = "fa_transaction")
@@ -25,5 +24,7 @@ public class Transaction {
     private String value;
     @OneToMany
     private List<Category> categories;
+    @Transient
+    private Long number;
     //endregion
 }

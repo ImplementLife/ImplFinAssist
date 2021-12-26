@@ -2,14 +2,26 @@ package com.ImplLife.services;
 
 import com.ImplLife.entity.dto.db.Role;
 import com.ImplLife.entity.dto.db.User;
-import org.apache.commons.collections4.set.UnmodifiableSet;
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
-@Component
+@Service
 public class UserService {
+
+    public User userInfo(Principal principal) {
+        User user = null;
+        try {
+            user = (User) ((Authentication) principal).getPrincipal();
+            fill(user);
+        } catch (Exception e) {
+            throw new RuntimeException("user not auth", e);
+        }
+        return user;
+    }
 
     public void fill(User user) {
         fillRoles(user);
