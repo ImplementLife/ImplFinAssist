@@ -7,31 +7,8 @@
 <body>
 <th:block  th:insert="~{com/com :: header}"></th:block>
 <main>
-    <div>
-        Hello.
-        <div>
-            <a href="/login">login</a>
-        </div>
-    </div>
-    <div>
-        <a href="/oauth2/authorization/google">With Google</a>
-    </div>
-    <div>
-        <div>
-            <div>
-                <input type="text" placeholder="url" value="/tst4" id="url">
-                <select id="type">
-                    <option>html</option>
-                    <option selected>json</option>
-                    <option>form</option>
-                </select>
-            </div>
-        </div>
-        <div><button id="add">add</button></div>
-        <div id="values"></div>
-        <div><button id="button">Отправить</button></div>
-        <div id="result"></div>
-    </div>
+    <div><button id="btn_addSimpleTransaction">Добавить</button></div>
+    <div id="transTable"></div>
 </main>
 <th:block  th:insert="~{com/com :: footer}"></th:block>
 </body>
