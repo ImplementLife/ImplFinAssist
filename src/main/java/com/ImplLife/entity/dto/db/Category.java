@@ -13,7 +13,9 @@ import javax.persistence.*;
 @Table(name = "fa_category")
 @Builder(toBuilder = true)
 public class Category {
+    @Transient
     public static final Category DEFAULT_MANUAL = builder().id(-1L).name("DEFAULT_MANUAL").build();
+    @Transient
     public static final Category DEFAULT_EXCEL = builder().id(-2L).name("DEFAULT_EXCEL").build();
 
     @Id

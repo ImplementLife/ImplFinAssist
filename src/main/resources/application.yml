@@ -19,6 +19,10 @@ spring:
     show-sql: false
     generate-ddl: false
     hibernate:
+      enable_lazy_load_no_trans: true
+      event:
+        merge:
+          entity_copy_observer: allow
       ddl-auto: update
     properties:
       hibernate:

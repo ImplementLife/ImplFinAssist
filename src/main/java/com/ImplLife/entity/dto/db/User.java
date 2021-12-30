@@ -1,6 +1,8 @@
 package com.ImplLife.entity.dto.db;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
@@ -37,11 +39,13 @@ public class User implements UserDetails, OidcUser {
     private String idRoles;
 
     @Singular
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Transaction> transactions;
 
     @Singular
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Category> categories;
     @Transient // TODO: 26.12.2021 issue with hibernate mapping...?...
     private Category lastSelectedCategory;

@@ -27,35 +27,16 @@ public class UserSecurity implements UserDetailsService {
     @Autowired
     private UserService userService;
 
-    public UserSecurity() {
-        rootTst = User.builder()
-                .username("root")
-                .password(encoder.encode("1"))
-                .googleId("115998414536109201674")
-                .role(USER).role(ADMIN)
-                .build();
-    }
-
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user;
-        if (rootTst.getUsername().equals(username)) {
-            user = rootTst;
-        } else {
-            user = userDao.findByUsername(username);
-        }
+        User user = userDao.findByUsername(username);
         if (user == null) throw new UsernameNotFoundException("User not found");
         userService.fill(user);
         return user;
     }
 
     public User findUserByGoogleId(String googleId) {
-        User user;
-        if (rootTst.getGoogleId().equals(googleId)) {
-            user = rootTst;
-        } else {
-            user = userDao.findUserByGoogleId(googleId);
-        }
+        User user = userDao.findUserByGoogleId(googleId);
         userService.fill(user);
         return user;
     }

@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head>
     <th:block  th:insert="~{com/com :: head}"></th:block>
     <title>IL Fin Assist</title>
 </head>
-<body>
+<body class="h-100">
 <th:block  th:insert="~{com/com :: header}"></th:block>
-<main>
-    <div><button id="btn_addSimpleTransaction">Добавить</button></div>
-    <div id="transTable"></div>
+<main class="container-xxl h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <div class="justify-content-center">
+                <div class="container-xxl">
+                    <div class="mt-2 mx-auto">
+                        <input type="text" placeholder="Сумма" class="form-control" id="in_value">
+                    </div>
+                    <div id="tst" class="mt-2"></div>
+                    <div class="input-group mt-2">
+                        <input type="text" placeholder="Новая категория" class="form-control" id="in_newCat">
+                        <button type="button" class="btn btn-outline-secondary" id="btn_newCat">ADD</button>
+                    </div>
+                    <div class="input-group mt-2">
+                        <input type="text" placeholder="Комментарий" class="form-control" id="in_comment">
+                    </div>
+                    <div class="btn-group w-100 mt-2" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-info" id="btn_clear">CLEAR</button>
+                        <button type="button" class="btn btn-outline-danger" id="btn_add">ADD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <th:block  th:insert="~{com/com :: footer}"></th:block>
+
 </body>
 </html>

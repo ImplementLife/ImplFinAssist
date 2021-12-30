@@ -39,9 +39,10 @@ public class TransactionService {
         return transactionDAO.findById(id).orElseThrow(() -> new IllegalArgumentException("Transaction with id -> " + id + " is not exist"));
     }
 
-    public void addTransaction(User user, Transaction transaction) {
+    public Transaction addTransaction(User user, Transaction transaction) {
         User updated = user.toBuilder().transaction(transaction).build();
         userDAO.save(updated);
+        return transaction;
     }
 
     private List<Long> userTransactionsIds(User user) { // TODO: 26.12.2021 replace to sql query
@@ -95,10 +96,11 @@ public class TransactionService {
         return byId.orElseThrow(() -> new IllegalArgumentException("Category with id -> " + id + " was not find."));
     }
 
-    public void addNewCategory(User user, String name) {
+    public Category addNewCategory(User user, String name) {
         Category category = Category.builder().name(name).build();
         User updatedUser = user.toBuilder().category(category).build();
         userDAO.save(updatedUser);
+        return category;
     }
 
     public void updateCategory(User user, Long id, String newName) {

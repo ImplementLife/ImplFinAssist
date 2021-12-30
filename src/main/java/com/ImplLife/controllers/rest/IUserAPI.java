@@ -32,7 +32,7 @@ public class IUserAPI implements UserAPI {
     @Override
     @PostMapping("/getAllTransactions")
     public List<Transaction> getAllTransactions(Principal principal) {
-        return null;
+        return transactionService.getAllTransactions(userService.userInfo(principal));
     }
 
     @Override
@@ -49,8 +49,8 @@ public class IUserAPI implements UserAPI {
 
     @Override
     @PostMapping("/addSimpleTransaction")
-    public Transaction addSimpleTransaction(Principal principal, Transaction searchCriteria) {
-        return null;
+    public Transaction addSimpleTransaction(Principal principal, Transaction transaction) {
+        return transactionService.addTransaction(userService.userInfo(principal), transaction);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class IUserAPI implements UserAPI {
     @Override
     @PostMapping("/getAllCategories")
     public List<Category> getAllCategories(Principal principal) {
-        return null;
+        return transactionService.getAllCategories(userService.userInfo(principal));
     }
 
     @Override
@@ -98,7 +98,7 @@ public class IUserAPI implements UserAPI {
     @Override
     @PostMapping("/addNewCategory")
     public Category addNewCategory(Principal principal, Category category) {
-        return null;
+        return transactionService.addNewCategory(userService.userInfo(principal), category.getName());
     }
 
     @Override

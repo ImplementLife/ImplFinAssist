@@ -1,45 +1,33 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head>
-   <title>ImplBankAssist - Login</title>
-   <link rel="stylesheet" href="/resource/auth/login/css/styles.css">
+   <th:block  th:insert="~{com/com :: head}"></th:block>
+   <title>IL Fin Assist - Login</title>
 </head>
 
-<body>
-   <main>
-      <div class="container">
-         <div class="mainContent">
-            <div class="wrapper">
-               <form action="/j_spring_security_check" method="post">
-                  <h2 class="form-signin-heading cen">Вход</h2>
-                  <div class="material-textfield blue">
-                     <input type="text" class="form-control" name="j_username" required autofocus>
-                     <label data-content="email">EMAIL</label>
+<body class="h-100">
+<th:block th:insert="~{com/com :: header}"></th:block>
+   <main class="container h-100">
+      <div class="container-fluid d-flex h-100 justify-content-center align-items-center p-0">
+         <div class="row bg-white shadow-sm">
+            <div class="col border rounded p-4">
+               <h3 class="text-center mb-4">Вход</h3>
+               <form action="/j_spring_security_check" method="post" novalidate>
+                  <div class="form-group">
+                     <input type="email" name="j_username" placeholder="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                   </div>
-                  <div class="material-textfield red">
-                     <input type="password" class="form-control" name="j_password" required>
-                     <label data-content="password">PASSWORD</label>
+                  <div class="mt-2 form-group">
+                     <input type="password" name="j_password" placeholder="pass" class="form-control" id="exampleInputPassword1">
                   </div>
-                  <div>
-                     <button class="btn cen" type="j_submit">ВОЙТИ</button>
-                  </div>
+                  <button type="submit" class="mt-3 btn btn-primary w-100">Войти</button>
                </form>
-               <div>
-                  <a href="/oauth2/authorization/google">With Google</a>
-               </div>
-            </div>
-            <div class="cen" th:if="${param.error}">
-               <div class="alert alert-danger">
-                  Логин или пароль не верный.
-               </div>
-            </div>
-            <div class="cen" th:if="${param.logout}">
-               <div class="alert alert-info">
-                  Вы вышли из аккаунта.
+               <div class="mt-2 btn btn-outline-primary w-100">
+                  <a class="text-decoration-none" href="/oauth2/authorization/google">With Google</a>
                </div>
             </div>
          </div>
       </div>
    </main>
+<th:block th:insert="~{com/com :: footer}"></th:block>
 </body>
 </html>
