@@ -40,8 +40,8 @@ public class TransactionService {
     }
 
     public Transaction addTransaction(User user, Transaction transaction) {
-        User updated = user.toBuilder().transaction(transaction).build();
-        userDAO.save(updated);
+        transaction.toBuilder().user(user);
+        transactionDAO.save(transaction);
         return transaction;
     }
 

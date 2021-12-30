@@ -25,9 +25,11 @@ public class Transaction {
     private List<Comment> comments;
     private Date date;
     private String value;
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Category> categories;
+    @ManyToOne
+    private User user;
     @Transient
     private Long number;
     //endregion

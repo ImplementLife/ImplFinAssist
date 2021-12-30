@@ -47,7 +47,8 @@ public class User implements UserDetails, OidcUser {
     @OneToMany(cascade = {CascadeType.ALL})
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Category> categories;
-    @Transient // TODO: 26.12.2021 issue with hibernate mapping...?...
+//    @Transient // TODO: 26.12.2021 issue with hibernate mapping...?...
+    @OneToOne
     private Category lastSelectedCategory;
     //endregion
 
