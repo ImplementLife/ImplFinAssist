@@ -34,13 +34,13 @@ function categoriesForm(categories) {
     }
     function createLiNewCat() {
         let liNewCat = $("<li></li>");
-        let btn_NewCat = $("<button type=\"button\" class=\"dropdown-item\">Add</button>");
+        let btn_NewCat = $('<button type="button" class="dropdown-item">Add</button>');
         liNewCat.append(btn_NewCat);
         return liNewCat;
     }
     function addCatToDDM(cat) {
         let li = $("<li></li>");
-        let btn = $("<button class=\"dropdown-item\"></button>");
+        let btn = $('<button class="dropdown-item"></button>');
         btn.text(cat.name);
         btn.on('click', function(){addToListCats(cat);li.remove();});
         li.append(btn);
@@ -86,10 +86,6 @@ function main() {
     function clearForm() {
         $("#in_value").val('');
         $("#in_newCat").val('');
-        $("[catEl=\"t\"]").forEach(element => {
-            element.remove();
-        });
-        clearCats();
     }
     function sendForm() {
         api.addSimpleTransaction({

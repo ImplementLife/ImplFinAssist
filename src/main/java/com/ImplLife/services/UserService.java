@@ -20,9 +20,9 @@ public class UserService {
         User user = null;
         try {
             user = (User) ((Authentication) principal).getPrincipal();
-            if (user.getUsername() != null) {
+            /*if (user.getUsername() != null) {
                 user = userDAO.findByUsername(user.getUsername());
-            } else if (user.getGoogleId() != null) {
+            } else */if (user.getGoogleId() != null) {
                 user = userDAO.findUserByGoogleId(user.getGoogleId());
             }
 
@@ -39,7 +39,9 @@ public class UserService {
 
     private void fillRoles(User user) {
         Set<Role> roles;
-        if (user.getRoles() != null) roles = new HashSet<>(user.getRoles());
+        if (user.getRoles() != null) {
+            roles = new HashSet<>(user.getRoles());
+        }
         else roles = new HashSet<>();
         String idRoles = user.getIdRoles();
         if (idRoles != null) {

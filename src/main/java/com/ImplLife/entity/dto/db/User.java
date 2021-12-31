@@ -29,6 +29,7 @@ public class User implements UserDetails, OidcUser {
     private Long id;
     private String googleId;
     private String username;
+    private String email;
     private String password;
     @Transient
     private String passwordConfirm;
@@ -78,6 +79,7 @@ public class User implements UserDetails, OidcUser {
 
     @Override
     public String getUsername() {
+        if (getEmail() != null) return email;
         return username;
     }
 

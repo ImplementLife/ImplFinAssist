@@ -7,6 +7,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,11 +26,11 @@ public class Transaction {
     private List<Comment> comments;
     private Date date;
     private String value;
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @Transient
     private List<Category> categories;
-    @ManyToOne
-    private User user;
+
+    private String catIds; //JSON array
+    private Long userId;
     @Transient
     private Long number;
     //endregion

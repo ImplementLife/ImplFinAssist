@@ -11,7 +11,7 @@ function send(url, data) {
     return res;
 }
 api.getAllTransactions = function() {
-    return send("/user/api/getAllTransactions", dataObj);
+    return send("/user/api/getAllTransactions");
 }
 api.addSimpleTransaction = function(dataObj) {
     return send("/user/api/addSimpleTransaction", dataObj);

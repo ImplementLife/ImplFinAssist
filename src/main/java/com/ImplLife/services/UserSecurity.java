@@ -29,22 +29,42 @@ public class UserSecurity implements UserDetailsService {
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(username);
+        User user = userDao.findUserByEmail(username);
+        if (user == null) {
+            user = userDao.findByUsername(username);
+        }
         if (user == null) throw new UsernameNotFoundException("User not found");
         userService.fill(user);
         return user;
     }
 
     public User findUserByGoogleId(String googleId) {
-        User user = userDao.findUserByGoogleId(googleId);
-        userService.fill(user);
-        return user;
+        User userByGoogleId = userDao.findUserByGoogleId(googleId);
+        if (userByGoogleId != null) {
+            userService.fill(userByGoogleId);
+        }
+        return userByGoogleId;
     }
 
     public User load(OidcUserRequest userRequest) {
-        User user;
         String sub = userRequest.getIdToken().getClaim("sub");
-        user = findUserByGoogleId(sub);
+        User user = findUserByGoogleId(sub);
+        User savedUser = null;
+        if (user == null) {
+            String name = userRequest.getIdToken().getClaim("name");
+            String email = userRequest.getIdToken().getClaim("email");
+
+            user = User.builder()
+                    .role(USER)
+                    .email(email)
+                    .username(name)
+                    .googleId(sub)
+                    .build();
+            userService.fill(user);
+            savedUser = userDao.save(user);
+            if (savedUser == null) throw new RuntimeException("User don't saved");
+            user = savedUser;
+        }
         userService.fill(user);
         return user;
     }

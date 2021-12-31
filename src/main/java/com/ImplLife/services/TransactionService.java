@@ -6,10 +6,14 @@ import com.ImplLife.dao.UserDAO;
 import com.ImplLife.entity.dto.db.Category;
 import com.ImplLife.entity.dto.db.Transaction;
 import com.ImplLife.entity.dto.db.User;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -25,9 +29,51 @@ public class TransactionService {
     private CategoryDAO categoryDAO;
     @Autowired
     private UserDAO userDAO;
+    @Autowired
+    private EntityManager entityManager;
+
+    private Transaction loadCategories(Transaction transaction) {
+        try {
+            String catIds = transaction.getCatIds();
+            JSONArray array = (JSONArray) new JSONParser().parse(catIds);
+            List<Long> ids = new LinkedList<>();
+            for (Object o : array) {
+                long l = Long.parseLong(o.toString());
+                ids.add(l);
+            }
+            List<Category> allById = categoryDAO.findAllById(ids);
+            transaction.setCategories(allById);
+            return transaction;
+        } catch (ParseException e) {
+            throw new RuntimeException("Error with view saved categories ids", e);
+        }
+    }
+
+    private Transaction prepareToSaveWithCat(Transaction transaction) {
+        try {
+            JSONArray array;
+            if (transaction.getCatIds() != null) {
+                array = (JSONArray) new JSONParser().parse(transaction.getCatIds());
+            } else {
+                array = new JSONArray();
+            }
+
+            for (Category category : transaction.getCategories()) {
+                array.add(category.getId());
+            }
+            transaction.setCatIds(array.toJSONString());
+            return transaction;
+        } catch (ParseException e) {
+            throw new RuntimeException("Error with view saved categories ids", e);
+        }
+    }
 
     public List<Transaction> getAllTransactions(User user) {
-        return user.getTransactions();
+        List<Transaction> byUserId = transactionDAO.findByUserId(user.getId());
+        for (Transaction transaction : byUserId) {
+            loadCategories(transaction);
+        }
+        return byUserId;
     }
 
     public List<Transaction> searchTransactions(User user, Transaction searchCriteria) {
@@ -36,12 +82,14 @@ public class TransactionService {
 
     public Transaction getSimpleTransaction(User user, Long id) {
         if (!userTransactionsIds(user).contains(id)) throw new AccessDeniedException("This user not have access to this transaction");
-        return transactionDAO.findById(id).orElseThrow(() -> new IllegalArgumentException("Transaction with id -> " + id + " is not exist"));
+        Transaction transaction = transactionDAO.findById(id).orElseThrow(() -> new IllegalArgumentException("Transaction with id -> " + id + " is not exist"));
+        return loadCategories(transaction);
     }
 
     public Transaction addTransaction(User user, Transaction transaction) {
-        transaction.toBuilder().user(user);
-        transactionDAO.save(transaction);
+        transaction.setUserId(user.getId());
+        prepareToSaveWithCat(transaction);
+        transactionDAO.saveAndFlush(transaction);
         return transaction;
     }
 
