@@ -36,13 +36,13 @@ public class TransactionService {
         try {
             String catIds = transaction.getCatIds();
             JSONArray array = (JSONArray) new JSONParser().parse(catIds);
-            List<Long> ids = new LinkedList<>();
+            List<Category> trCat = new ArrayList<>();
             for (Object o : array) {
                 long l = Long.parseLong(o.toString());
-                ids.add(l);
+                Optional<Category> byId = categoryDAO.findById(l);
+                trCat.add(byId.get());
             }
-            List<Category> allById = categoryDAO.findAllById(ids);
-            transaction.setCategories(allById);
+            transaction.setCategories(trCat);
             return transaction;
         } catch (ParseException e) {
             throw new RuntimeException("Error with view saved categories ids", e);
@@ -144,11 +144,21 @@ public class TransactionService {
         return byId.orElseThrow(() -> new IllegalArgumentException("Category with id -> " + id + " was not find."));
     }
 
+    private Map<String, Category> filterByUser(List<Category> list, User user) {
+        Map<String, Category> collectByUser = list.stream().filter(c -> {
+            return user.getCategories().contains(c);
+        }).collect(Collectors.toMap(Category::getName, Function.identity()));
+        return collectByUser;
+    }
+
     public Category addNewCategory(User user, String name) {
         Category category = Category.builder().name(name).build();
         User updatedUser = user.toBuilder().category(category).build();
         userDAO.save(updatedUser);
-        return category;
+        User newUser = userDAO.findById(updatedUser.getId()).get();
+        List<Category> allByName = categoryDAO.findAllByName(name);
+        Map<String, Category> collectByUser = filterByUser(allByName, newUser);
+        return collectByUser.get(name);
     }
 
     public void updateCategory(User user, Long id, String newName) {

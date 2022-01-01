@@ -25,7 +25,7 @@ public class Transaction {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Comment> comments;
     private Date date;
-    private String value;
+    private Double value;
     @Transient
     private List<Category> categories;
 
