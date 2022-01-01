@@ -5,14 +5,14 @@ function getAllCats() {return categoriesForTransaction;};
 function clearCats() {categoriesForTransaction = new Array();}
 
 function categoriesForm(categories) {
-    let mainDiv = $("<div class=\"input-group mb-3\"></div>");
-    let listCats = $("<span class=\"form-control ps-0\"></span>");
-    let btn_currentCat = $("<button type=\"button\" class=\"btn btn-outline-secondary\">Action</button>");
-    let toggleDD = $("<button type=\"button\" class=\"btn btn-outline-secondary dropdown-toggle dropdown-toggle-split\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><span class=\"visually-hidden\">Toggle Dropdown</span></button>");
+    let mainDiv = $('<div class="input-group mb-3"></div>');
+    let listCats = $('<span class="form-control ps-0"></span>');
+    let btn_currentCat = $('<button type="button" class="btn btn-outline-secondary">Action</button>');
+    let toggleDD = $('<button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">Toggle Dropdown</span></button>');
     
-    let catList = $("<ul class=\"dropdown-menu dropdown-menu-end\"></ul>");
+    let catList = $('<ul class="dropdown-menu dropdown-menu-end"></ul>');
     let liNewCat = createLiNewCat();
-    let liDevider = $("<li><hr class=\"dropdown-divider\"></li>")
+    let liDevider = $('<li><hr class="dropdown-divider"></li>')
    
     mainDiv.append(listCats);
     mainDiv.append(btn_currentCat);
@@ -23,7 +23,7 @@ function categoriesForm(categories) {
     catList.append(liNewCat);
 
     function addToListCats(cat) {
-        let catView = $("<span catEl=\"t\" class=\"border text-nowrap text-muted rounded-3 m-2 p-1 text-center h-100\"></span>");
+        let catView = $('<span catEl="t" class="border text-nowrap text-muted rounded-3 m-2 p-1 text-center h-100"></span>');
         catView.text(cat.name);
         catView.on('click', function(){catView.remove();addCatToDDM(cat);remCat(cat);});
         addCat(cat);

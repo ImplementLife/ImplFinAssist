@@ -6,7 +6,7 @@ $(function() {
         allTrans.forEach(e => {
             let tr = $("<tr></tr>");
 
-            let num = $("<th scope=\"row\"></th>");num.text(i++);
+            let num = $('<th scope="row"></th>');num.text(i++);
             let val = $("<td></td>");val.text(e.value);
             let date = $("<td></td>");date.text(e.date);
             let cats = $("<td></td>");
