@@ -7,6 +7,7 @@
     <groupId>com.ImplLife</groupId>
     <artifactId>ImplBankAssist</artifactId>
     <version>1.0-Beta</version>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

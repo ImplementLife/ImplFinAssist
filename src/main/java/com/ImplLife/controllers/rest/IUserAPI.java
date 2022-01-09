@@ -38,13 +38,13 @@ public class IUserAPI implements UserAPI {
     @Override
     @PostMapping("/searchTransactions")
     public List<Transaction> searchTransactions(Principal principal, Transaction searchCriteria) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @PostMapping("/getSimpleTransaction")
     public Transaction getSimpleTransaction(Principal principal, Long id) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -56,25 +56,25 @@ public class IUserAPI implements UserAPI {
     @Override
     @PostMapping("updateSimpleTransaction")
     public Transaction updateSimpleTransaction(Principal principal, Transaction searchCriteria) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @PostMapping("/deleteSimpleTransaction")
     public void deleteSimpleTransaction(Principal principal, Long id) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @PostMapping("/deleteListTransaction")
     public void deleteListTransaction(Principal principal, List<Long> id) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @PostMapping("/deleteAllTransaction")
     public void deleteAllTransaction(Principal principal) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -86,13 +86,13 @@ public class IUserAPI implements UserAPI {
     @Override
     @PostMapping("/getLastSelectedCategory")
     public Category getLastSelectedCategory(Principal principal) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @PostMapping("/setLastSelectedCategory")
     public void setLastSelectedCategory(Principal principal, Category category) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -104,24 +104,24 @@ public class IUserAPI implements UserAPI {
     @Override
     @PostMapping("/updateCategory")
     public Category updateCategory(Principal principal, Category category) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @PostMapping("/deleteCategory")
     public void deleteCategory(Principal principal, Long id) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @PostMapping("/userInfo")
     public Map<String, String> userInfo(Principal principal) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @PostMapping("/procExcel")
     public void procExcel(Principal principal, MultipartFile excel) {
-
+        throw new UnsupportedOperationException();
     }
 }
