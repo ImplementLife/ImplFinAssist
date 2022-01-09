@@ -9,13 +9,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 
 @Entity
 @Table(name = "fa_transaction")
-@Builder(toBuilder = true)
 public class Transaction {
     //region Fields
     @Id

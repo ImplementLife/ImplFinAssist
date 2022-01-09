@@ -15,13 +15,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 
 @Entity
 @Table(name = "fa_user")
-@Builder(toBuilder = true)
 public class User implements UserDetails, OidcUser {
     //region Fields
     @Id
@@ -39,14 +39,10 @@ public class User implements UserDetails, OidcUser {
     private Set<Role> roles;
     private String idRoles;
 
-    @Singular
     @OneToMany(cascade = {CascadeType.ALL})
-    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Transaction> transactions;
 
-    @Singular
     @OneToMany(cascade = {CascadeType.ALL})
-    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Category> categories;
 
     @OneToOne

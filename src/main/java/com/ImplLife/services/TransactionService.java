@@ -152,10 +152,13 @@ public class TransactionService {
     }
 
     public Category addNewCategory(User user, String name) {
-        Category category = Category.builder().name(name).build();
-        User updatedUser = user.toBuilder().category(category).build();
-        userDAO.save(updatedUser);
-        User newUser = userDAO.findById(updatedUser.getId()).get();
+        Category category = new Category();
+        category.setName(name);
+        List<Category> categories = new LinkedList<>(user.getCategories());
+        categories.add(category);
+        user.setCategories(categories);
+        userDAO.save(user);
+        User newUser = userDAO.findById(user.getId()).get();
         List<Category> allByName = categoryDAO.findAllByName(name);
         Map<String, Category> collectByUser = filterByUser(allByName, newUser);
         return collectByUser.get(name);
@@ -164,8 +167,8 @@ public class TransactionService {
     public void updateCategory(User user, Long id, String newName) {
         Category category = getById(id);
         if (user.getCategories().contains(category)) {
-            Category updatedCategory = category.toBuilder().name(newName).build();
-            categoryDAO.save(updatedCategory);
+            category.setName(newName);
+            categoryDAO.save(category);
         }
     }
 

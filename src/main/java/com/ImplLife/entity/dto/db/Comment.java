@@ -5,13 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 
 @Entity
 @Table(name = "fa_comment")
-@Builder(toBuilder = true)
 public class Comment {
     //region Fields
     @Id

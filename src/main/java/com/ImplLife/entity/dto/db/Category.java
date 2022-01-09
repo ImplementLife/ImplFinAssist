@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Objects;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -13,12 +12,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "fa_category")
-@Builder(toBuilder = true)
 public class Category {
     @Transient
-    public static final Category DEFAULT_MANUAL = builder().id(-1L).name("DEFAULT_MANUAL").build();
+    public static final Category DEFAULT_MANUAL = new Category(-1L, "DEFAULT_MANUAL");
     @Transient
-    public static final Category DEFAULT_EXCEL = builder().id(-2L).name("DEFAULT_EXCEL").build();
+    public static final Category DEFAULT_EXCEL = new Category(-2L, "DEFAULT_EXCEL");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

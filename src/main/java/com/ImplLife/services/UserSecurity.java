@@ -3,7 +3,6 @@ package com.ImplLife.services;
 import com.ImplLife.dao.UserDAO;
 import com.ImplLife.entity.dto.db.Role;
 import com.ImplLife.entity.dto.db.User;
-import org.hibernate.engine.internal.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,9 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.*;
 
 import static com.ImplLife.entity.dto.db.Role.*;
 
@@ -54,12 +51,12 @@ public class UserSecurity implements UserDetailsService {
             String name = userRequest.getIdToken().getClaim("name");
             String email = userRequest.getIdToken().getClaim("email");
 
-            user = User.builder()
-                    .role(USER)
-                    .email(email)
-                    .username(name)
-                    .googleId(sub)
-                    .build();
+            user = new User();
+            user.setRoles(Collections.singleton(USER));
+            user.setEmail(email);
+            user.setUsername(name);
+            user.setGoogleId(sub);
+
             userService.fill(user);
             savedUser = userDao.save(user);
             if (savedUser == null) throw new RuntimeException("User don't saved");
