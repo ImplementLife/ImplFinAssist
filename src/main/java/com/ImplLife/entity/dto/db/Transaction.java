@@ -26,6 +26,7 @@ public class Transaction {
     private List<Comment> comments;
     private Date date;
     private Double value;
+    private Boolean isBilling;
     @Transient
     private List<Category> categories;
 
