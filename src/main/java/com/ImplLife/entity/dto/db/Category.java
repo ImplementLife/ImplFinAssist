@@ -23,6 +23,10 @@ public class Category {
     private Long id;
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "user_owner_id")
+    private User owner;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,5 +38,10 @@ public class Category {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    public Category(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 }

@@ -21,8 +21,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(cascade = {CascadeType.ALL})
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
     private Date date;
     private Double value;
@@ -31,7 +30,10 @@ public class Transaction {
     private List<Category> categories;
 
     private String catIds; //JSON array
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_owner_id")
+    private User owner;
+
     @Transient
     private Long number;
     //endregion

@@ -38,10 +38,10 @@ public class User implements UserDetails, OidcUser {
     private Set<Role> roles;
     private String idRoles;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<Transaction> transactions;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<Category> categories;
 
     @OneToOne

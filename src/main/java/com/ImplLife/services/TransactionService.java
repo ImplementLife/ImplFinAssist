@@ -69,7 +69,7 @@ public class TransactionService {
     }
 
     public List<Transaction> getAllTransactions(User user) {
-        List<Transaction> byUserId = transactionDAO.findByUserId(user.getId());
+        List<Transaction> byUserId = transactionDAO.findByOwnerId(user.getId());
         for (Transaction transaction : byUserId) {
             loadCategories(transaction);
         }
@@ -87,7 +87,7 @@ public class TransactionService {
     }
 
     public Transaction addTransaction(User user, Transaction transaction) {
-        transaction.setUserId(user.getId());
+        transaction.setOwner(user);
         prepareToSaveWithCat(transaction);
         transactionDAO.saveAndFlush(transaction);
         return transaction;
