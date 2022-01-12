@@ -18,9 +18,12 @@ public class People {
     private Long id;
 
     private String name;
+    private boolean hidden;
+    private boolean primary;
+    private int numInList;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "user_owner_id")
     private User owner;
 
     @ManyToOne
@@ -34,4 +37,12 @@ public class People {
             inverseJoinColumns = { @JoinColumn(name = "group_id") }
     )
     private List<Group> groups;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "fa_requisitions_peoples",
+            joinColumns = { @JoinColumn(name = "people_id") },
+            inverseJoinColumns = { @JoinColumn(name = "requisition_id") }
+    )
+    private List<Requisition> requisitions;
 }

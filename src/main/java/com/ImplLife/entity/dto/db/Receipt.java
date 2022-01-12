@@ -14,21 +14,21 @@ import java.util.List;
 @Setter
 
 @Entity
-@Table(name = "fa_group")
-public class Group {
+@Table(name = "fa_receipt")
+public class Receipt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private boolean hidden;
-    private boolean primary;
-    private int numInList;
+    @OneToMany(mappedBy = "receipt", fetch = FetchType.LAZY)
+    private List<ReceiptItem> receiptItems;
 
     @ManyToOne
     @JoinColumn(name = "user_owner_id")
     private User owner;
 
-    @ManyToMany(mappedBy = "groups")
-    private List<People> members;
+    @ElementCollection
+    @CollectionTable(name = "fa_receipt_images", joinColumns = @JoinColumn(name = "receipt_owner_id"))
+    @Column(name = "image_name")
+    private List<String> images;
 }

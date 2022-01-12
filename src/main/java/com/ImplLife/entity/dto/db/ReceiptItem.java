@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,21 +13,18 @@ import java.util.List;
 @Setter
 
 @Entity
-@Table(name = "fa_group")
-public class Group {
+@Table(name = "fa_receipt_item")
+public class ReceiptItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int count;
     private String name;
-    private boolean hidden;
-    private boolean primary;
-    private int numInList;
+    private String cost;
 
     @ManyToOne
-    @JoinColumn(name = "user_owner_id")
-    private User owner;
+    @JoinColumn(name = "receipt_owner_id")
+    private Receipt receipt;
 
-    @ManyToMany(mappedBy = "groups")
-    private List<People> members;
 }

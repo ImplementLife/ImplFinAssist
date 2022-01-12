@@ -34,7 +34,6 @@ public class User implements UserDetails, OidcUser {
     @Transient
     private String passwordConfirm;
 
-    @Singular
     @Transient
     private Set<Role> roles;
     private String idRoles;
@@ -48,10 +47,18 @@ public class User implements UserDetails, OidcUser {
     @OneToOne
     private Category lastSelectedCategory;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<People> peoples;
-    @OneToMany(mappedBy = "owner")
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<Group> groups;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    private List<Requisition> requisitions;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    private List<Receipt> receipts;
+
     //endregion
 
     //region OAuth (@Transient)

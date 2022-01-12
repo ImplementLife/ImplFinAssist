@@ -14,21 +14,22 @@ import java.util.List;
 @Setter
 
 @Entity
-@Table(name = "fa_group")
-public class Group {
+@Table(name = "fa_requisition")
+public class Requisition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private boolean hidden;
-    private boolean primary;
-    private int numInList;
+    private Boolean released;
 
     @ManyToOne
     @JoinColumn(name = "user_owner_id")
     private User owner;
 
-    @ManyToMany(mappedBy = "groups")
-    private List<People> members;
+    @ManyToMany
+    private List<People> peoples;
+
+    @OneToMany
+    private List<Receipt> receipts;
+
 }
