@@ -16,6 +16,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "fa_transaction")
+
 public class Transaction {
     //region Fields
     @Id

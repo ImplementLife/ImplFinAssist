@@ -22,7 +22,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
     @ManyToOne
     @JoinColumn(name = "user_owner_id")
     private User owner;
