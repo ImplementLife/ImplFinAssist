@@ -4,15 +4,15 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@Setter
+@NoArgsConstructor
 @Getter
+@Setter
 
 @Entity
 @Table(name = "fa_comment")
-@Builder(toBuilder = true)
 public class Comment {
     //region Fields
     @Id
@@ -20,5 +20,8 @@ public class Comment {
     private Long id;
     private String value;
     private Date date;
+    @ManyToOne
+    @JoinColumn(name = "transaction_id")
+    private Transaction transaction;
     //endregion
 }

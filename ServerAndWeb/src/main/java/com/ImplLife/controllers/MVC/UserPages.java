@@ -13,7 +13,6 @@ public class UserPages {
 
     @GetMapping
     public String main(
-            @AuthenticationPrincipal OAuth2User oAuth2User,
             Principal principal,
             Model model
     ) {

@@ -1,29 +1,41 @@
 package com.ImplLife.entity.dto.db;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@Setter
+@NoArgsConstructor
 @Getter
+@Setter
 
 @Entity
 @Table(name = "fa_transaction")
-@Builder(toBuilder = true)
+
 public class Transaction {
     //region Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+    @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
     private Date date;
-    private String value;
-    @OneToMany
+    private Double value;
+    private Boolean isBilling;
+    @Transient
     private List<Category> categories;
+
+    private String catIds; //JSON array
+    @ManyToOne
+    @JoinColumn(name = "user_owner_id")
+    private User owner;
+
+    @Transient
+    private Long number;
     //endregion
 }

@@ -1,6 +1,8 @@
 package com.ImplLife.entity.dto.db;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
@@ -13,14 +15,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@Setter
+@NoArgsConstructor
 @Getter
+@Setter
 
 @Entity
 @Table(name = "fa_user")
-@Builder(toBuilder = true)
 public class User implements UserDetails, OidcUser {
     //region Fields
     @Id
@@ -28,18 +29,36 @@ public class User implements UserDetails, OidcUser {
     private Long id;
     private String googleId;
     private String username;
+    private String email;
     private String password;
     @Transient
     private String passwordConfirm;
 
-    @Singular
     @Transient
     private Set<Role> roles;
     private String idRoles;
 
-    @Singular
-    @OneToMany
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<Transaction> transactions;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    private List<Category> categories;
+
+    @OneToOne
+    private Category lastSelectedCategory;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    private List<People> peoples;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    private List<Group> groups;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    private List<Requisition> requisitions;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    private List<Receipt> receipts;
+
     //endregion
 
     //region OAuth (@Transient)
@@ -68,6 +87,7 @@ public class User implements UserDetails, OidcUser {
 
     @Override
     public String getUsername() {
+        if (getEmail() != null) return email;
         return username;
     }
 
