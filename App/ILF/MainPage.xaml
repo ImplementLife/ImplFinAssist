@@ -29,7 +29,7 @@
         </Frame>
         
 
-        <StackLayout x:Name="MasivHorizontLayout" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <StackLayout x:Name="MasivHorizontLayout" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
             
             
             
@@ -38,12 +38,14 @@
 
                 </StackLayout>
             </ScrollView>
-
+            
             <ScrollView x:Name="ScrollMiniMenu">
                 <StackLayout x:Name="MenuListMini" IsVisible="false" BackgroundColor="#48494b" Orientation ="Vertical" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Padding="10" >
 
                 </StackLayout>
             </ScrollView>
+            
+            
             <StackLayout x:Name="LoginsUserPanel" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"   IsVisible="false">
                 <Frame BackgroundColor="#747356" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="FillAndExpand" Orientation ="Vertical" BackgroundColor="#424242">
@@ -56,9 +58,10 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
-            <StackLayout x:Name="Peoples" IsVisible="false" BackgroundColor="Wheat" Orientation ="Horizontal" HorizontalOptions="CenterAndExpand" >
+
+            <StackLayout x:Name="Peoples" IsVisible="false" BackgroundColor="Wheat" Orientation ="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                 <ScrollView>
-                    <StackLayout x:Name="PeoplesPanels" BackgroundColor="Black" Padding="20">
+                    <StackLayout x:Name="PeoplesPanels" BackgroundColor="#8A8A8A" Padding="20"   >
 
                         <Button x:Name="RegisterButton" Text="ADD USER" Clicked="RegisterButton_Clicked"/>
                         <Label x:Name="DBT" Text="DEBUG" TextColor="White"/>
@@ -69,10 +72,22 @@
                           
             </StackLayout>
 
-            <StackLayout x:Name="Grupe" BackgroundColor="Honeydew" Orientation="Horizontal" IsVisible="false">
-                <Label x:Name="DBAG" Text="XXX"/>                
-            </StackLayout>
+
+            <StackLayout x:Name="GrupeXML" BackgroundColor="PowderBlue" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" IsVisible="false">
+                <ScrollView x:Name="ScrollMenuGrupe" HorizontalOptions="CenterAndExpand">
+
+                        <StackLayout x:Name="GrupePanel" BackgroundColor="Gray" Orientation="Vertical" Padding="20" >
+                            
+                            <Label x:Name="DBAG" Text="XXX"/>
+                            <Button x:Name="ADDGrupe" Text="Add Grupe" Clicked="ADDGrupe_Clicked" />
+                            
+                        </StackLayout>
+                        
+                    </ScrollView>
+                </StackLayout>
             
+
+
         </StackLayout>
         
         
