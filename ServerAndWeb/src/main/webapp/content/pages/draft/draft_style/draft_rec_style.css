@@ -1,0 +1,95 @@
+.content__item {
+    display: flex;
+    margin-top: 10px;
+
+    max-width: 1400px;
+    justify-content: space-around;
+    text-align: center;
+    flex-direction: column;
+    margin: 15px 10px;
+    border: 4px solid rgba(134, 146, 185, 0.8);
+    background-color: rgba(134, 146, 185, 0.2);
+    border-radius: 30px;
+    padding: 15px;
+}
+.content__title {
+    max-width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0px 15px 15px 30px;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.content__title::before {
+    content: "";
+    width: 10px;
+    height: 1.5px;
+    background-color: rgb(197, 197, 197);
+    position: absolute;
+    top: 12.5px;
+    transform: rotate(40deg);
+    left: 0px;
+    transition: all 0.3s ease 0s;
+}
+.content__title::after {
+    content: "";
+    width: 10px;
+    height: 1.5px;
+    background-color: rgb(197, 197, 197);
+    position: absolute;
+    top: 12.5px;
+    transform: rotate(-40deg);
+    left: 8px;
+    transition: all 0.3s ease 0s;
+}
+.active::before {
+    transform: rotate(-40deg);
+}
+.active::after {
+    transform: rotate(40deg);
+}
+.content__title:hover {
+    text-decoration: underline;
+}
+
+.content__element {
+}
+
+.content__photobar,
+.content__agreement {
+    justify-content: center;
+    max-width: 100%;
+    margin: 0 auto;
+    line-height: 225%;
+    color: antiquewhite;
+    font-size: 14px;
+}
+
+/* ----------------------------------------------------------------- */
+
+.content__photoadd {
+    display: flex;
+    flex-wrap: wrap;
+}
+.divWrapper {
+    margin: 10px;
+    background: url("/ServerAndWeb/src/main/webapp/content/pages/draft/draft_icon/free-icon-add-3914248.svg")
+        center/contain no-repeat;
+    height: 100px;
+    width: 100px;
+}
+.newPhoto {
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    background-color: rgb(0, 0, 0);
+}
