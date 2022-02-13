@@ -2,99 +2,61 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ILF.MainPage">
-
-
-
     <StackLayout BackgroundColor="#1B1B1B" Spacing="0">
-
-        <Frame BackgroundColor="#252523" Padding="10" CornerRadius="0">         
-            
+        <Frame BackgroundColor="#252523" Padding="10" CornerRadius="0">
             <StackLayout  Orientation="Horizontal">
-
                 <ImageButton x:Name="ButtonMenu"
-                        Source="ButtonMenu.png"                                         
+                        Source="ButtonMenu.png"
                         Clicked="ButtonMenu_Clicked"                     
                         WidthRequest="50" HeightRequest="50"
                         HorizontalOptions="StartAndExpand"
-                        
                 />
-
-
                 <Label Text="IL Fiscal Assist" TextColor="#E8DAEF " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="25" FontFamily="Lobster"/>
-
                 <ImageButton x:Name="ImagLogo" Source="userimg.png" Clicked="ImagLogo_Clicked" WidthRequest="50" HeightRequest="50" HorizontalOptions="EndAndExpand" CornerRadius="360"/>
-
-            </StackLayout>    
-            
+            </StackLayout>
         </Frame>
-        
-
         <StackLayout x:Name="MasivHorizontLayout" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
-            
-            
-            
             <ScrollView x:Name="ScrollMenu">
                 <StackLayout x:Name="MenuList" BackgroundColor="#48494b" Orientation ="Vertical" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Padding="10" >
-
                 </StackLayout>
             </ScrollView>
-            
             <ScrollView x:Name="ScrollMiniMenu">
                 <StackLayout x:Name="MenuListMini" IsVisible="false" BackgroundColor="#48494b" Orientation ="Vertical" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Padding="10" >
-
                 </StackLayout>
             </ScrollView>
-            
-            
             <StackLayout x:Name="LoginsUserPanel" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"   IsVisible="false">
                 <Frame BackgroundColor="#747356" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="FillAndExpand" Orientation ="Vertical" BackgroundColor="#424242">
-
                         <Label x:Name="dbg" Text="debugText"/>
                         <Entry x:Name="Login" Placeholder="Login" TextChanged="Login_TextChanged" />
                         <Entry x:Name="Pass" Placeholder="Pass" IsPassword="True" TextChanged ="Pass_TextChanged" />
-
                         <Button x:Name="AuthorizationButton" Text="Authorization/Register" Clicked="AuthorizationButton_Register_Clicked" BackgroundColor="#D0CE88 " TextColor="Black"/>
                     </StackLayout>
                 </Frame>
             </StackLayout>
-
             <StackLayout x:Name="Peoples" IsVisible="false" BackgroundColor="Wheat" Orientation ="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                 <ScrollView>
                     <StackLayout x:Name="PeoplesPanels" BackgroundColor="#8A8A8A" Padding="20"   >
-
                         <Button x:Name="RegisterButton" Text="ADD USER" Clicked="RegisterButton_Clicked"/>
                         <Label x:Name="DBT" Text="DEBUG" TextColor="White"/>
-                        
-
                     </StackLayout>
                 </ScrollView>
-                          
             </StackLayout>
-
-
             <StackLayout x:Name="GrupeXML" BackgroundColor="PowderBlue" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" IsVisible="false">
                 <ScrollView x:Name="ScrollMenuGrupe" HorizontalOptions="CenterAndExpand">
-
-                        <StackLayout x:Name="GrupePanel" BackgroundColor="Gray" Orientation="Vertical" Padding="20" >
-                            
-                            <Label x:Name="DBAG" Text="XXX"/>
-                            <Button x:Name="ADDGrupe" Text="Add Grupe" Clicked="ADDGrupe_Clicked" />
-                            
-                        </StackLayout>
-                        
-                    </ScrollView>
-                </StackLayout>
-            
-
-
+                    <StackLayout x:Name="GrupePanel" BackgroundColor="Gray" Orientation="Vertical" Padding="20" >
+                        <Label x:Name="DBAG" Text="XXX"/>
+                        <Button x:Name="ADDGrupe" Text="Add Grupe" Clicked="ADDGrupe_Clicked" />
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <StackLayout x:Name="RequisitionXML" BackgroundColor="PowderBlue" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" IsVisible="false">
+                <ScrollView x:Name="ScrollMenuRequisit" HorizontalOptions="CenterAndExpand" >
+                    <StackLayout x:Name="RequPanel" Orientation="Vertical" VerticalOptions="Center" >
+                        <Button x:Name="ADDRequisition" Text="Add Requisition" Clicked="ADDRequisition_Clicked" />
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
         </StackLayout>
-        
-        
-
-        
-
-
-    </StackLayout>
-
+    </StackLayout>    
 </ContentPage>

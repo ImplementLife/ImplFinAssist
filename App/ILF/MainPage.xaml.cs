@@ -10,18 +10,18 @@ using System.Collections.ObjectModel;
 
 namespace ILF
 {
-
+    // СОхранения данных не реализованно.!!!!!!!!!!!!!!!!!!!!!
+    
     public class USER
     {
+        
         static private int _countCreatClass = 0;
-        static private string _nameUser = $"User {_countCreatClass}";
+        static public string _nameUser = $"User {_countCreatClass}";
         static private string _telefon;
         static private string _emile;
 
-        
-
         //Алгоритм Создаеться Гоизонтальній Лоаут в него прмещаються кнопки и он помещаеться на вертикальный лоаут(Локальный)
-        StackLayout HorizontPanel = new StackLayout()
+        public StackLayout HorizontPanel = new StackLayout()
         {
             Orientation = StackOrientation.Horizontal,
             BackgroundColor = Color.Pink,
@@ -35,14 +35,13 @@ namespace ILF
             Orientation = StackOrientation.Vertical,
             IsVisible = false,
         };
+
         //Строки ввода
         public Entry Name = new Entry()
         {
             TextColor = Color.White,
             Placeholder = "Name",
-            
-            
-        };           
+        };
         public Entry Telefon = new Entry()
         {
             Placeholder = "Telefon",
@@ -52,24 +51,18 @@ namespace ILF
         {
             Placeholder = "Email",
             TextColor = Color.White
-        };       
-       
+        };
+
         public Button NameUSer = new Button()
         {
             Text = $"{_nameUser}",
-            
         };
         public Button DelButton = new Button()
         {
             Text = "del",
         };
-       public  USER(int count)
-        {
-            _countCreatClass = count;
-        }
         public USER()
         {
-            
             HorizontPanel.Children.Add(NameUSer);
             HorizontPanel.Children.Add(DelButton);
             VerticalPanel.Children.Add(HorizontPanel);
@@ -77,8 +70,7 @@ namespace ILF
             PanelRegistersUser.Children.Add(Telefon);
             PanelRegistersUser.Children.Add(Email);
             VerticalPanel.Children.Add(PanelRegistersUser);
-          
-        }        
+        }
     }
     public class Acaunt
     {
@@ -98,37 +90,37 @@ namespace ILF
             return _pass;
         }
     }
-    public class Grupe
+    public class Grupe:USER
     {
-       static private string _nameGrupe = "No_Name";
-       
-       public ListView ListPiperov = new ListView()
+        static private string _nameGrupe = "No_Name";
+
+        public ListView ListPiperov = new ListView()
         {
-           IsVisible = false,
-           RowHeight = 50
-       };
+            IsVisible = false,
+            RowHeight = 50
+        };
         public ListView ListSelectPip = new ListView()
         {
             IsVisible = false,
             RowHeight = 50
         };
-        
-        
+        List<USER> ADDtoGrupeListPipl = new List<USER>();
+
         public StackLayout GrupeZoneHorizontal = new StackLayout()
         {
 
             Orientation = StackOrientation.Horizontal,
-            
+
             BackgroundColor = Color.Red
         };
         public StackLayout PanelAddUserToGrupe = new StackLayout()
         {
             BackgroundColor = Color.Orange,
             Orientation = StackOrientation.Vertical,
-            
+
             //лист доступніх пользователей.
         };
-        
+
         public Button GrupeChek = new Button()
         {
             Text = $"{_nameGrupe}",
@@ -146,26 +138,43 @@ namespace ILF
         Label TextGrupe1 = new Label()
         {
             IsVisible = false,
-            Text ="Список людей в вашем списке"
+            Text = "Список людей в вашем списке:"
         };
-        public Grupe(ref List<USER> Peples)
+        Label TextGrupe2 = new Label()
+        {
+            IsVisible = false,
+            Text = "Список людей доступных в рекомендациях:"
+        };
+        public Grupe(List<USER> Peples)
+        {
+            List<USER> CopyList = new List<USER>();
+            foreach (var item in Peples)
             {
+               
+            }
+            /*
+            ListPiperov.ItemsSource = Peples;
+            ListPiperov.ItemSelected += ListPiperov_ItemSelected;
+            */
 
-                   
-                ListPiperov.ItemsSource = Peples;
-                ListPiperov.ItemSelected += ListPiperov_ItemSelected;
-                GrupeChek.Clicked += GrupeChek_Clicked;
-                 
-                GrupeZoneHorizontal.Children.Add(GrupeChek);
-                GrupeZoneHorizontal.Children.Add(DelGrupe);
-                
-                PanelAddUserToGrupe.Children.Add(GrupeZoneHorizontal);
-                PanelAddUserToGrupe.Children.Add(NameObject);
-                PanelAddUserToGrupe.Children.Add(TextGrupe1);
+            GrupeChek.Clicked += GrupeChek_Clicked;
 
-                   
-                PanelAddUserToGrupe.Children.Add(ListPiperov);
+            GrupeZoneHorizontal.Children.Add(GrupeChek);
+            GrupeZoneHorizontal.Children.Add(DelGrupe);
 
+            PanelAddUserToGrupe.Children.Add(GrupeZoneHorizontal);
+            PanelAddUserToGrupe.Children.Add(NameObject);
+
+            PanelAddUserToGrupe.Children.Add(TextGrupe1);
+           //
+
+            PanelAddUserToGrupe.Children.Add(TextGrupe2);
+            foreach (var Pep in CopyList)
+            {
+                Pep.PanelRegistersUser.Children.Clear();
+                Pep.HorizontPanel.Children.Remove(Pep.DelButton);
+                PanelAddUserToGrupe.Children.Add(Pep.VerticalPanel);
+            }
         }
 
         private void ListPiperov_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -177,24 +186,19 @@ namespace ILF
 
         private void GrupeChek_Clicked(object sender, EventArgs e)
         {
-            if(NameObject.IsVisible)
+            if (NameObject.IsVisible)
             {
                 NameObject.IsVisible = false;
                 TextGrupe1.IsVisible = false;
                 ListPiperov.IsVisible = false;
-               
             }
-            else 
-            { 
+            else
+            {
                 NameObject.IsVisible = true;
                 TextGrupe1.IsVisible = true;
                 ListPiperov.IsVisible = true;
-                
-                
             }
-
             NameObject.TextChanged += NameObject_TextChanged;
-            
         }
 
         private void NameObject_TextChanged(object sender, TextChangedEventArgs e)
@@ -202,6 +206,89 @@ namespace ILF
             GrupeChek.Text = NameObject.Text;
         }
     }
+    public class Requisition
+    {
+        static int RazmerMasiva = 0;
+        //АДД (Кнопка с именем события , ListFOTO, ListSootvets)
+        public StackLayout Osnova = new StackLayout()
+        {
+            Orientation = StackOrientation.Horizontal,
+            BackgroundColor = Color.Red
+        };
+        //Алгоритм добавления в лояут 1.Лист фото 2.АДД фото.
+        StackLayout ListFOTOLayout = new StackLayout()
+        {
+            Orientation = StackOrientation.Horizontal,
+            BackgroundColor = Color.Blue
+        };
+        //АДД()
+        StackLayout ListSootvetstvia = new StackLayout()
+        {
+            Orientation = StackOrientation.Vertical,
+            BackgroundColor = Color.Green,
+        };
+        ListView ListStackLoyaot = new ListView()
+        {
+            RowHeight = 50
+        };
+
+        public Button PlusButt = new Button()
+        {
+            Text="+"
+        };
+        public Button MunusButt = new Button()
+        {
+            Text="-"
+        };
+        public Label NamePip = new Label();
+        public Label countPosic = new Label()
+        {
+            Text="0"
+        };
+        public Requisition(ref List<USER> Peples)
+            {                 //Инцыализация массива и создание екзампляров 
+                RazmerMasiva = Peples.Count;
+                StackLayout[] PiplowR = new StackLayout[RazmerMasiva];
+                PlusButt.Clicked += PlusButt_Clicked;
+                MunusButt.Clicked += MunusButt_Clicked;
+                List<StackLayout> Test = new List<StackLayout>();
+            for (int i = 0; i < PiplowR.Length; i++)
+                {
+                    PiplowR[i] = new StackLayout();
+                    PiplowR[i].Orientation = StackOrientation.Horizontal;
+                    NamePip.Text = Peples[i].NameUSer.Text;
+                    PiplowR[i].Children.Add(NamePip);
+                    PiplowR[i].Children.Add(MunusButt);
+                    
+                    PiplowR[i].Children.Add(countPosic);
+                    PiplowR[i].Children.Add(PlusButt);
+                    Test.Add(PiplowR[i]);
+                    
+                }
+                ListStackLoyaot.ItemsSource = Test;
+
+                ListSootvetstvia.Children.Add(ListStackLoyaot);
+                Osnova.Children.Add(ListFOTOLayout);
+                Osnova.Children.Add(ListSootvetstvia);
+
+
+            }
+
+        private void MunusButt_Clicked(object sender, EventArgs e)
+        {
+            int count = Convert.ToInt32(countPosic.Text);
+            count -= 1;
+            countPosic.Text = Convert.ToString(count);
+            
+        }
+
+        private void PlusButt_Clicked(object sender, EventArgs e)
+        {
+            int count = Convert.ToInt32(countPosic.Text);
+            count += 1;
+            countPosic.Text = Convert.ToString(count);
+        }
+    }   
 
     public partial class MainPage : ContentPage
     {
@@ -213,12 +300,13 @@ namespace ILF
         public Button[] ButtonsMini = new Button[6];
 
         public ImageButton StrelkaBack = new ImageButton(); 
+
         //Для поиска зарегестрированх пользователей.
         public List<USER> ListRegUsers = new List<USER>();
        
         public List<Acaunt> AcauntsList = new List<Acaunt>() { new Acaunt("admin","1111") };
         public List<Grupe> AllGrupeList = new List<Grupe>();
-
+        
         public MainPage()
         {            
             InitializeComponent();
@@ -227,12 +315,28 @@ namespace ILF
         protected override void OnAppearing()
         {
             ADDButton(ref MenuList);
-            ADDButton(ref MenuListMini);         
+            ADDButton(ref MenuListMini);
+            //Достает сохранение
+            GetSaveAcaunt();
+
 
         }
-        public void SAVES()
+        public void SETSAVESAcaunt(List<Acaunt> AcauntList)
         {
+            //Пример сохранения через словаарь
+            //App.Current.Properties["Ключь"] = "Значение";
+            //App.Current.Properties["name"] = "Tom";
+            App.Current.Properties["AcauntList"] = AcauntList;
 
+
+        }
+        public void GetSaveAcaunt()
+        {
+            if (App.Current.Properties.ContainsKey("AcauntList"))
+            {
+                AcauntsList = (List<Acaunt>)App.Current.Properties["AcauntList"];
+            }
+           
         }
         public void ADDButton(ref StackLayout Name)
         {
@@ -345,9 +449,9 @@ namespace ILF
             if (ON.Text == "Group" || ON.Text == "G")
             {
                 OFF_ON_StackLayout(ref GrupeXML);
-
+              
                 RefreshGrupe(AllGrupeList, ListRegUsers);
-
+                
 
                 if (GrupeXML.IsVisible)
                 {
@@ -360,7 +464,8 @@ namespace ILF
             }
             if (ON.Text == "Requisition" || ON.Text == "R")
             {
-
+                OFF_ON_StackLayout(ref RequisitionXML);
+                
             }
             if (ON.Text == "Manual" || ON.Text == "M")
             {
@@ -370,22 +475,27 @@ namespace ILF
             {
 
             }
-            if (ON.Text == "Report" || ON.Text == "R")
+            if (ON.Text == "Report" ||Equals(ON, ButtonsMini[5]))
             {
 
             }
         }
         public void OFF_ON_Border(ref Button ON)
         {
+            
             for (int i = 0; i < Buttons.Length; i++)
             {
 
-                if (Equals(Buttons[i].Text,ON.Text)||Equals(ButtonsMini[i].Text, ON.Text))
+                if (Equals(Buttons[i].Text,ON.Text)||Equals(ButtonsMini[i], ON))
                 {
-                    Buttons[i].BorderColor = Color.White;
-                    Buttons[i].BorderWidth = 5;
-                    ButtonsMini[i].BorderWidth = 5;
-                    ButtonsMini[i].BorderColor = Color.White;
+                    
+                        Buttons[i].BorderColor = Color.White;
+                        Buttons[i].BorderWidth = 5;
+                        ButtonsMini[i].BorderWidth = 5;
+                        ButtonsMini[i].BorderColor = Color.White;
+                        
+                    
+                    
                 }
                 else
                 {                    
@@ -411,6 +521,7 @@ namespace ILF
             //Выключить все кроме 
             Peoples.IsVisible = false;
             GrupeXML.IsVisible = false;
+            RequisitionXML.IsVisible = false;
             LoginsUserPanel.IsVisible = false;
 
             ON.IsVisible = true;
@@ -422,6 +533,7 @@ namespace ILF
             {
                 ScrollMenu.IsVisible = false;
                 ScrollMiniMenu.IsVisible = false;
+                ScrollMenuRequisit.IsVisible = false;
                 MenuList.IsVisible = false;
                 MenuListMini.IsVisible = false;
                 IsMenuOn = false;
@@ -442,7 +554,7 @@ namespace ILF
         }
         private void RegisterButton_Clicked(object sender, EventArgs e)
         {
-            // Оброботать поля текста.
+           //Оброботать поля текста.
            //Создаеться екзампляр Юзера/Человека и записіваеться в лист.
            USER USERReg = new USER();
            USERReg.Name.Completed += Name_Completed;
@@ -450,10 +562,8 @@ namespace ILF
            USERReg.DelButton.Clicked += DelButton_Clicked;
            
            PeoplesPanels.Children.Add(USERReg.VerticalPanel);
-
            ListRegUsers.Add(USERReg);
            
-
             void NameUSer_Clicked(object sender1, EventArgs e1)
             {                
                 if(USERReg.PanelRegistersUser.IsVisible)
@@ -470,14 +580,12 @@ namespace ILF
                 PeoplesPanels.Children.Remove(USERReg.VerticalPanel);
                 ListRegUsers.Remove(USERReg);
                 USERReg = null;
-                
             }
             void Name_Completed(object sender3, EventArgs e3)
             {
                 Entry TextName = sender3 as Entry;
                 USERReg.NameUSer.Text = TextName.Text;
             }
-
         }       
         private void Item_Clicked(object sender, EventArgs e)
         {
@@ -525,12 +633,13 @@ namespace ILF
             {
                 dbg.Text = "Акаунт зарегестрирован";
                 AcauntsList.Add(new Acaunt(Login.Text, Pass.Text));
+                SETSAVESAcaunt(AcauntsList);
             }
         }
 
         private void ADDGrupe_Clicked(object sender, EventArgs e)
         {
-            Grupe NewGrupe = new Grupe(ref ListRegUsers);
+            Grupe NewGrupe = new Grupe(ListRegUsers);
             AllGrupeList.Add(NewGrupe);
             RefreshGrupe(AllGrupeList, ListRegUsers);
             NewGrupe.DelGrupe.Clicked += DelGrupe_Clicked;
@@ -559,6 +668,10 @@ namespace ILF
             }
         }
 
-
+        private void ADDRequisition_Clicked(object sender, EventArgs e)
+        {
+            Requisition Rnew = new Requisition(ref ListRegUsers);
+            RequPanel.Children.Add(Rnew.Osnova);
+        }
     }
 }
