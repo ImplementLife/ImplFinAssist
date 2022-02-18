@@ -7,11 +7,13 @@ using USER;
 
 namespace API
 {
-    class Mock : Api
-    {
-        override bool removeUser(UserInfo userInfo)
+    class Mock : API
+    {     
+            
+        public bool removeUser(UserInfo userInfo)
         {
-            return true;
+                return true;
         }
+
     }
 }
