@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace USER
+namespace View
 {
     class UserView
     {
@@ -56,17 +56,11 @@ namespace USER
         {
             PanelRegistersUser.IsVisible = !PanelRegistersUser.IsVisible;
         }
-        private void DelButton_Clicked(object sender2, EventArgs e2)
-        {
-            //message alert -> if ok -> bool API.remove(this) -> if true -> RequisitionPage.removeUser(this)
-            PeoplesPanels.Children.Remove(USERReg.VerticalPanel);
-            ListRegUsers.Remove(USERReg);
-            USERReg = null;
-        }
+        
         private void Name_Completed(object sender3, EventArgs e3)
         {
             Entry TextName = sender3 as Entry;
-            NameUser.Text = TextName.Text;
+            BNameExpandContent.Text = TextName.Text;
         }
 
         #endregion

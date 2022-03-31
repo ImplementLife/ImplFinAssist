@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 
-
 namespace ILF
 {
-    // СОхранения данных не реализованно.!!!!!!!!!!!!!!!!!!!!!
-    
+    // СОхранения данных не реализованно.!!!!!
     public class USER
     {
-        
         static private int _countCreatClass = 0;
         static public string _nameUser = $"User {_countCreatClass}";
         static private string _telefon;
@@ -93,7 +90,6 @@ namespace ILF
     public class Grupe:USER
     {
         static private string _nameGrupe = "No_Name";
-
         public ListView ListPiperov = new ListView()
         {
             IsVisible = false,
@@ -108,16 +104,13 @@ namespace ILF
 
         public StackLayout GrupeZoneHorizontal = new StackLayout()
         {
-
             Orientation = StackOrientation.Horizontal,
-
             BackgroundColor = Color.Red
         };
         public StackLayout PanelAddUserToGrupe = new StackLayout()
         {
             BackgroundColor = Color.Orange,
             Orientation = StackOrientation.Vertical,
-
             //лист доступніх пользователей.
         };
 
@@ -133,7 +126,6 @@ namespace ILF
         {
             IsVisible = false,
             Placeholder = "Имя группы"
-
         };
         Label TextGrupe1 = new Label()
         {
@@ -150,13 +142,12 @@ namespace ILF
             List<USER> CopyList = new List<USER>();
             foreach (var item in Peples)
             {
-               
+                
             }
             /*
             ListPiperov.ItemsSource = Peples;
             ListPiperov.ItemSelected += ListPiperov_ItemSelected;
             */
-
             GrupeChek.Clicked += GrupeChek_Clicked;
 
             GrupeZoneHorizontal.Children.Add(GrupeChek);
@@ -166,8 +157,6 @@ namespace ILF
             PanelAddUserToGrupe.Children.Add(NameObject);
 
             PanelAddUserToGrupe.Children.Add(TextGrupe1);
-           //
-
             PanelAddUserToGrupe.Children.Add(TextGrupe2);
             foreach (var Pep in CopyList)
             {
@@ -180,7 +169,6 @@ namespace ILF
         private void ListPiperov_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             string Rec = Convert.ToString(e.SelectedItem);
-
             ListSelectPip.ItemsSource += Rec;
         }
 
@@ -231,7 +219,6 @@ namespace ILF
         {
             RowHeight = 50
         };
-
         public Button PlusButt = new Button()
         {
             Text="+"
@@ -246,12 +233,12 @@ namespace ILF
             Text="0"
         };
         public Requisition(ref List<USER> Peples)
-            {                 //Инцыализация массива и создание екзампляров 
-                RazmerMasiva = Peples.Count;
-                StackLayout[] PiplowR = new StackLayout[RazmerMasiva];
-                PlusButt.Clicked += PlusButt_Clicked;
-                MunusButt.Clicked += MunusButt_Clicked;
-                List<StackLayout> Test = new List<StackLayout>();
+        {   //Инцыализация массива и создание екзампляров 
+            RazmerMasiva = Peples.Count;
+            StackLayout[] PiplowR = new StackLayout[RazmerMasiva];
+            PlusButt.Clicked += PlusButt_Clicked;
+            MunusButt.Clicked += MunusButt_Clicked;
+            List<StackLayout> Test = new List<StackLayout>();
             for (int i = 0; i < PiplowR.Length; i++)
                 {
                     PiplowR[i] = new StackLayout();
@@ -263,23 +250,19 @@ namespace ILF
                     PiplowR[i].Children.Add(countPosic);
                     PiplowR[i].Children.Add(PlusButt);
                     Test.Add(PiplowR[i]);
-                    
                 }
                 ListStackLoyaot.ItemsSource = Test;
 
                 ListSootvetstvia.Children.Add(ListStackLoyaot);
                 Osnova.Children.Add(ListFOTOLayout);
                 Osnova.Children.Add(ListSootvetstvia);
-
-
-            }
+        }
 
         private void MunusButt_Clicked(object sender, EventArgs e)
         {
             int count = Convert.ToInt32(countPosic.Text);
             count -= 1;
             countPosic.Text = Convert.ToString(count);
-            
         }
 
         private void PlusButt_Clicked(object sender, EventArgs e)
@@ -292,7 +275,6 @@ namespace ILF
 
     public partial class MainPage : ContentPage
     {
-        
         //ВКОЮЧЕНО ЛИ МЕНЮ
         static bool IsMenuOn = false;
         //Указіваем количество кнопок в меню
@@ -318,8 +300,6 @@ namespace ILF
             ADDButton(ref MenuListMini);
             //Достает сохранение
             GetSaveAcaunt();
-
-
         }
         public void SETSAVESAcaunt(List<Acaunt> AcauntList)
         {
@@ -327,8 +307,6 @@ namespace ILF
             //App.Current.Properties["Ключь"] = "Значение";
             //App.Current.Properties["name"] = "Tom";
             App.Current.Properties["AcauntList"] = AcauntList;
-
-
         }
         public void GetSaveAcaunt()
         {
@@ -336,7 +314,6 @@ namespace ILF
             {
                 AcauntsList = (List<Acaunt>)App.Current.Properties["AcauntList"];
             }
-           
         }
         public void ADDButton(ref StackLayout Name)
         {
@@ -345,23 +322,17 @@ namespace ILF
                 for (int i = 0; i < Buttons.Length; i++)
                 {
                     Buttons[i] = new Button();
-
                     Buttons[i].WidthRequest = 150;
                     Buttons[i].TextColor = Color.FromHex("#d8d994");
                     Buttons[i].BackgroundColor = Color.FromHex("#333538");
                     Buttons[i].HorizontalOptions = LayoutOptions.CenterAndExpand;
 
                     Buttons[0].Text = "People";
-                    if (i == 1)
-                        Buttons[1].Text = "Group";
-                    if (i == 2)
-                        Buttons[2].Text = "Requisition";
-                    if (i == 3)
-                        Buttons[3].Text = "Manual";
-                    if (i == 4)
-                        Buttons[4].Text = "Exel";
-                    if (i == 5)
-                        Buttons[5].Text = "Report";
+                    if (i == 1) Buttons[1].Text = "Group";
+                    if (i == 2) Buttons[2].Text = "Requisition";
+                    if (i == 3) Buttons[3].Text = "Manual";
+                    if (i == 4) Buttons[4].Text = "Exel";
+                    if (i == 5) Buttons[5].Text = "Report";
 
                     Buttons[i].Clicked += Buttons_Clicked;
 
@@ -376,25 +347,17 @@ namespace ILF
                 for (int i = 0; i < Buttons.Length; i++)
                 {
                     ButtonsMini[i] = new Button();
-
                     ButtonsMini[i].WidthRequest = 50;
                     ButtonsMini[i].TextColor = Color.FromHex("#d8d994");
                     ButtonsMini[i].BackgroundColor = Color.FromHex("#333538");
                     ButtonsMini[i].HorizontalOptions = LayoutOptions.CenterAndExpand;
 
                     ButtonsMini[0].Text = "P";
-                    if (i == 1)
-                        ButtonsMini[1].Text = "G";
-                    if (i == 2)
-                        ButtonsMini[2].Text = "R";
-                    if (i == 3)
-                        ButtonsMini[3].Text = "M";
-                    if (i == 4)
-                        ButtonsMini[4].Text = "E";
-                    if (i == 5)
-                        ButtonsMini[5].Text = "R";
-
-
+                    if (i == 1) ButtonsMini[1].Text = "G";
+                    if (i == 2) ButtonsMini[2].Text = "R";
+                    if (i == 3) ButtonsMini[3].Text = "M";
+                    if (i == 4) ButtonsMini[4].Text = "E";
+                    if (i == 5) ButtonsMini[5].Text = "R";
 
                     ButtonsMini[i].Clicked += Buttons_Clicked;
                     StrelkaBack.Clicked += StrelkaBack_Clicked;
@@ -412,26 +375,21 @@ namespace ILF
                     }
                 }
             }
-
         }
         private void StrelkaBack_Clicked(object sender, EventArgs e)
         {
-
             MenuList.IsVisible = true;
             ScrollMenu.IsVisible = true;
             ScrollMiniMenu.IsVisible = false;
             MenuListMini.IsVisible = false;
-
         }
         private void Buttons_Clicked(object sender, EventArgs e)
         {
             Button ON = sender as Button;
-            
             if (ScrollMenu.IsVisible)
             {
                 ScrollMenu.IsVisible = false;
             }
-
             ScrollMiniMenu.IsVisible = true;
             OFF_ON_Border(ref ON);
             if (MenuList.IsVisible)
@@ -439,20 +397,14 @@ namespace ILF
                 MenuList.IsVisible = false;
                 MenuListMini.IsVisible = true;
             }
-
             if (ON.Text == "People" || ON.Text == "P")
             {
                 OFF_ON_StackLayout(ref Peoples);
-                
-
             }
             if (ON.Text == "Group" || ON.Text == "G")
             {
                 OFF_ON_StackLayout(ref GrupeXML);
-              
                 RefreshGrupe(AllGrupeList, ListRegUsers);
-                
-
                 if (GrupeXML.IsVisible)
                 {
                     DBAG.Text = "";
@@ -482,29 +434,22 @@ namespace ILF
         }
         public void OFF_ON_Border(ref Button ON)
         {
-            
             for (int i = 0; i < Buttons.Length; i++)
             {
-
                 if (Equals(Buttons[i].Text,ON.Text)||Equals(ButtonsMini[i], ON))
                 {
-                    
-                        Buttons[i].BorderColor = Color.White;
-                        Buttons[i].BorderWidth = 5;
-                        ButtonsMini[i].BorderWidth = 5;
-                        ButtonsMini[i].BorderColor = Color.White;
-                        
-                    
-                    
+                    Buttons[i].BorderColor = Color.White;
+                    Buttons[i].BorderWidth = 5;
+                    ButtonsMini[i].BorderWidth = 5;
+                    ButtonsMini[i].BorderColor = Color.White;
                 }
                 else
-                {                    
+                {
                     Buttons[i].BorderWidth = 0;
                     Buttons[i].BorderColor = Color.Default;
                     ButtonsMini[i].BorderWidth = 0;
                     ButtonsMini[i].BorderColor = Color.Default;
                 }
-                
             }
         }
         public void OFF_ON_Scroll(ref ScrollView ON)
@@ -620,14 +565,12 @@ namespace ILF
             bool IsRegisterNowUser = true;
             foreach (var acauntChek in AcauntsList)
             {
-                
                 if (Equals(acauntChek.GetLogin(), Login.Text)&&Equals(acauntChek.GetPass(),Pass.Text))
                 {
                     dbg.Text = "Автаризация успешна";
                     IsRegisterNowUser = false;
                     break;
                 }
-                
             }
             if(IsRegisterNowUser)
             {

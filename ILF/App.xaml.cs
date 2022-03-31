@@ -9,7 +9,6 @@ namespace ILF
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainPage();
         }
 
