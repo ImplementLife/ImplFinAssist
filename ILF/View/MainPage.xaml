@@ -2,6 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ILF.MainPage">
+    
+    
+    
     <StackLayout BackgroundColor="#1B1B1B" Spacing="0">
         <Frame BackgroundColor="#252523" Padding="10" CornerRadius="0">
             <StackLayout  Orientation="Horizontal">
@@ -15,6 +18,7 @@
                 <ImageButton x:Name="ImagLogo" Source="userimg.png" Clicked="ImagLogo_Clicked" WidthRequest="50" HeightRequest="50" HorizontalOptions="EndAndExpand" CornerRadius="360"/>
             </StackLayout>
         </Frame>
+        
         <StackLayout x:Name="MasivHorizontLayout" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
             <ScrollView x:Name="ScrollMenu">
                 <StackLayout x:Name="MenuList" BackgroundColor="#48494b" Orientation ="Vertical" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Padding="10" >
