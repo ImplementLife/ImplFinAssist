@@ -1,0 +1,40 @@
+spring:
+#  main:
+#    web-application-type: none
+  datasource:
+    url: jdbc:postgresql://localhost/ImplBankAssist
+    username: ImplBankAssist
+    password: 1234
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 31b8172d8766dafae0a8
+            client-secret: 43bcfbba92ac547dad3ee27f6ba2c3983bcc8bc7
+          google:
+            client-id: 453982103266-7jsn61o6coedtaansnn02s2hon12jvo5.apps.googleusercontent.com
+            client-secret: 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
+  jpa:
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  thymeleaf:
+    check-template-location: false
+    enabled: true
+    cache: false
+    prefix: /content/pages/
+    suffix: .html
+  view:
+    prefix: /content/pages/
+    suffix: /.html
+
+logging:
+  level:
+    org.springframework.security: INFO
