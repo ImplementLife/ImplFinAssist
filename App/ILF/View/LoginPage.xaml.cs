@@ -16,5 +16,18 @@ namespace ILF.View
         {
             InitializeComponent();
         }
+
+        public void Login_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void Pass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void AuthorizationButton_Register_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

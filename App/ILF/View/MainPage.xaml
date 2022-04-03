@@ -13,7 +13,7 @@
                         WidthRequest="50" HeightRequest="50"
                         HorizontalOptions="StartAndExpand"
                 />
-                <Label Text="IL Fiscal Assist" TextColor="#E8DAEF " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="25" FontFamily="Lobster"/>
+                <Label Text="Split" TextColor="#E8DAEF " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="25" FontFamily="Lobster"/>
                 <ImageButton x:Name="ImagLogo" Source="userimg.png" Clicked="ImagLogo_Clicked" WidthRequest="50" HeightRequest="50" HorizontalOptions="EndAndExpand" CornerRadius="360"/>
             </StackLayout>
         </Frame>
@@ -45,10 +45,8 @@
                 
             </StackLayout>
         </StackLayout>
-        
+
         <StackLayout x:Name="MasivHorizontLayout" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
-            
-            
             <StackLayout x:Name="Peoples" IsVisible="false" BackgroundColor="Wheat" Orientation ="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                 <ScrollView>
                     <StackLayout x:Name="PeoplesPanels" BackgroundColor="#8A8A8A" Padding="20"   >
@@ -56,7 +54,7 @@
                         <Label x:Name="DBT" Text="DEBUG" TextColor="White"/>
                     </StackLayout>
                 </ScrollView>
-            </StackLayout>wq
+            </StackLayout>
             <StackLayout x:Name="GrupeXML" BackgroundColor="PowderBlue" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" IsVisible="false">
                 <ScrollView x:Name="ScrollMenuGrupe" HorizontalOptions="CenterAndExpand">
                     <StackLayout x:Name="GrupePanel" BackgroundColor="Gray" Orientation="Vertical" Padding="20" >
