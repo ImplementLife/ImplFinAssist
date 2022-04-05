@@ -21,7 +21,7 @@
         <StackLayout>
             <StackLayout x:Name="Menu">
                 <ScrollView x:Name="ScrollMenu">
-                    <StackLayout x:Name="MenuList" BackgroundColor="#48494b" Orientation="Vertical" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Padding="10" >
+                    <StackLayout x:Name="MenuList" BackgroundColor="#48494b" Orientation="Vertical" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Padding="10"  >
                         <Button Text="People" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" />
                         <Button Text="Group" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand"/>
                         <Button Text="Requisition" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand"/>

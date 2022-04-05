@@ -493,7 +493,7 @@ namespace ILF
                 MenuList.IsVisible = true;         
                 
                 MenuListMini.IsVisible = false;
-                LoginsUserPanel.IsVisible = false;
+                 LoginsUserPanel.IsVisible = false;
             }
                         
         }

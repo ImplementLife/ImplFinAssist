@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ILF.View.ScrollMenuPage">
+    
+    <ContentPage.Content>
+
+        <StackLayout>
+            <StackLayout x:Name="Menu">
+                <ScrollView x:Name="ScrollMenu">
+                    <StackLayout x:Name="MenuList" BackgroundColor="#48494b" Orientation="Vertical" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Padding="10" >
+                        <Button Text="People" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="People_Clicked"/>
+                        <Button Text="Group" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Group_Clicked"/>
+                        <Button Text="Requisition" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Requisition_Clicked"/>
+                        <Button Text="Manual" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Manual_Clicked"/>
+                        <Button Text="Excel" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Excel_Clicked"/>
+                        <Button Text="Report" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Report_Clicked"/>
+                    </StackLayout>
+                </ScrollView>
+                <ScrollView x:Name="ScrollMiniMenu">
+                    <StackLayout x:Name="MenuListMini" IsVisible="false" BackgroundColor="#48494b" Orientation ="Vertical" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Padding="10" >
+                        <Button Text="P" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="People_Clicked"/>
+                        <Button Text="G" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Group_Clicked"/>
+                        <Button Text="R" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Requisition_Clicked"/>
+                        <Button Text="M" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Manual_Clicked"/>
+                        <Button Text="E" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Excel_Clicked"/>
+                        <Button Text="R" WidthRequest="150" TextColor="#d8d994" BackgroundColor="#333538" HorizontalOptions="CenterAndExpand" Clicked="Report_Clicked"/>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <StackLayout x:Name="Pages">
+
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
