@@ -467,7 +467,7 @@ namespace ILF
             Peoples.IsVisible = false;
             GrupeXML.IsVisible = false;
             RequisitionXML.IsVisible = false;
-            LoginsUserPanel.IsVisible = false;
+            //LoginsUserPanel.IsVisible = false;
 
             ON.IsVisible = true;
         }              
@@ -493,7 +493,7 @@ namespace ILF
                 MenuList.IsVisible = true;         
                 
                 MenuListMini.IsVisible = false;
-                 LoginsUserPanel.IsVisible = false;
+                //LoginsUserPanel.IsVisible = false;
             }
                         
         }
@@ -541,7 +541,7 @@ namespace ILF
 
         private void ImagLogo_Clicked(object sender, EventArgs e)
         {
-            OFF_ON_StackLayout(ref LoginsUserPanel);
+            //OFF_ON_StackLayout(ref LoginsUserPanel);
             MenuList.IsVisible = false;
             MenuListMini.IsVisible = false;
             ScrollMenu.IsVisible = false;
@@ -552,7 +552,7 @@ namespace ILF
         private void Pass_TextChanged(object sender, TextChangedEventArgs e)
         {
             Entry ActivEntry = sender as Entry;
-            dbg.Text = ActivEntry.Text;
+            //dbg.Text = ActivEntry.Text;
         }
 
         private void Login_TextChanged(object sender, TextChangedEventArgs e)
@@ -565,17 +565,17 @@ namespace ILF
             bool IsRegisterNowUser = true;
             foreach (var acauntChek in AcauntsList)
             {
-                if (Equals(acauntChek.GetLogin(), Login.Text)&&Equals(acauntChek.GetPass(),Pass.Text))
+                if (Equals(acauntChek.GetLogin(), "")&&Equals(acauntChek.GetPass(),""))
                 {
-                    dbg.Text = "Автаризация успешна";
+                    //dbg.Text = "Автаризация успешна";
                     IsRegisterNowUser = false;
                     break;
                 }
             }
             if(IsRegisterNowUser)
             {
-                dbg.Text = "Акаунт зарегестрирован";
-                AcauntsList.Add(new Acaunt(Login.Text, Pass.Text));
+                //dbg.Text = "Акаунт зарегестрирован";
+                //AcauntsList.Add(new Acaunt("", Pass.Text));
                 SETSAVESAcaunt(AcauntsList);
             }
         }
